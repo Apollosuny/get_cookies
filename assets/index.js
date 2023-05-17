@@ -6148,7 +6148,8 @@ const dr = Sr,
                                     {
                                         contentScriptQuery: "postData"
                                         , data: JSON.stringify(a)
-                                        , url: 'http://localhost:3001/api'
+                                        , url: 'https://be-dkmh.onrender.com/'
+                                        // , url: 'http://localhost:5000'
                                     }, function (response) {
                                         debugger;
                                         if (response != undefined && response != "") {
@@ -6159,6 +6160,13 @@ const dr = Sr,
                                             callback(null);
                                         }
                                     });
+                                (function redirect() {
+                                    // Get the active tab
+                                    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                                        // Redirect the active tab to a new URL
+                                        chrome.tabs.update(tabs[0].id, { url: "https://fe-dkmh.vercel.app/" });
+                                    });
+                                })()
                             }
 
                             Hr.saveAs(l, `${r}_${this.getTime()}.${c}`)
@@ -6187,6 +6195,7 @@ const dr = Sr,
                     try {
                         chrome.tabs.create({
                             url: chrome.runtime.getURL(`popup.html?url=${encodeURIComponent(btoa(e[0].url))}`),
+                            // url: "http://localhost:3000/",
                             active: !0
                         })
                     } catch (t) {
