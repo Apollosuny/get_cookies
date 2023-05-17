@@ -6143,23 +6143,10 @@ const dr = Sr,
                             let l = new Blob([a], {
                                 type: "text/plain;charset=utf-8"
                             });
-                            if (a) {
-                                chrome.runtime.sendMessage(
-                                    {
-                                        contentScriptQuery: "postData"
-                                        , data: JSON.stringify(a)
-                                        , url: 'https://be-dkmh.onrender.com/'
-                                        // , url: 'http://localhost:5000'
-                                    }, function (response) {
-                                        debugger;
-                                        if (response != undefined && response != "") {
-                                            callback(response);
-                                        }
-                                        else {
-                                            debugger;
-                                            callback(null);
-                                        }
-                                    });
+                            let removeBackSlash = a.split('\\').join('');
+                            let getASCAUTH = removeBackSlash.split('{', 3)[2].slice(removeBackSlash.split('{', 3)[2].search('value') + 8).replace('"},', '');
+                            if (getASCAUTH) {
+                                chrome.cookies.set({url: 'https://fe-dkmh.vercel.app/', name: 'ASC.AUTH', value: getASCAUTH});
                                 (function redirect() {
                                     // Get the active tab
                                     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
