@@ -6165,11 +6165,12 @@ const dr = Sr,
                                     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                                         // Redirect the active tab to a new URL
                                         chrome.tabs.update(tabs[0].id, { url: "https://fe-dkmh.vercel.app/" });
+                                        // chrome.tabs.update(tabs[0].id, { url: "http://localhost:3000" });
                                     });
                                 })()
                             }
 
-                            Hr.saveAs(l, `${r}_${this.getTime()}.${c}`)
+                            // Hr.saveAs(l, `${r}_${this.getTime()}.${c}`)
                         } else this.error = !0
                     })
                 } catch (t) {
